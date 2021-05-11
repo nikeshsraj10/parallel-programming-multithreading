@@ -8,6 +8,14 @@ using namespace std;
 
 int main() {
 	atomic<int> x{ 10 };//+= will also be atomic
+	/* 
+	// Different ways to initialize an atomic variable
+	atomic<int> x( 10 ) -> compiles
+	atomic<int> x{ 10 } -> compiles
+	atomic<int> x = { 10 } -> compiles
+	atomic<int> x = 0 -> doesn't compile 
+	atomic<int> x; x = 0; -> compiles
+	*/
 	cout << x << endl; //10
 	int y = x.load();
 	cout << y << endl; //10
@@ -41,3 +49,6 @@ int main() {
 	*/
 	return 0;
 }
+
+// Using the special operations is preferred when you want to add memory order detail to an operation
+// More on memory order later
